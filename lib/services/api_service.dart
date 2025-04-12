@@ -1,4 +1,5 @@
 import 'package:afyaai/models/login_model.dart';
+import 'package:afyaai/models/prompt_model.dart';
 import 'package:afyaai/models/register_model.dart';
 import 'package:afyaai/utils/constants.dart';
 import 'localstorage_service.dart';
@@ -61,6 +62,30 @@ class ApiService {
       return jsonDecode(response.body);
     } else {
       throw Exception('Failed to register');
+    }
+  }
+
+  Future<Map<String, dynamic>?> sendPrompt(PromptModel request) async {
+    final accessToken = await StorageService.getData('access_token');
+    final response = await http.post(
+      Uri.parse('${BASE_URL}/diagnose'),
+      headers: {
+        'Content-Type': 'application/json',
+        'action': 'login',
+        'Authorization': 'Bearer $accessToken',
+      },
+      body: jsonEncode({
+        'action': 'geminiAI',
+        'prompt': request.prompt,
+      }),
+    );
+
+    print(response.body);
+
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      throw Exception('Failed to to get diagnosis');
     }
   }
 
