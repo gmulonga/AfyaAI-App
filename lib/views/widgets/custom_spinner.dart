@@ -4,6 +4,6 @@ import 'package:afyaai/utils/constants.dart';
 
 final spinkit = SpinKitWave(
   itemBuilder: (BuildContext context, int index) {
-    return DecoratedBox(decoration: BoxDecoration(color: kWhite));
+    return DecoratedBox(decoration: BoxDecoration(color: kGreen));
   },
 );
