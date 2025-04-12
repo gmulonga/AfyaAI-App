@@ -9,7 +9,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'AfyaAI',
-      initialRoute: AppRoutes.home,
+      initialRoute: AppRoutes.getStarted,
       getPages: AppPages.routes,
     );
   }
