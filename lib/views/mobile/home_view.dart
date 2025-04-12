@@ -90,7 +90,7 @@ class _HomeViewState extends State<HomeView> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Possible Diseases:",
-                            style: TextStyle(fontWeight: FontWeight.bold)),
+                            style: TextStyle(fontWeight: FontWeight.bold, color: kGreen)),
                         ...List.generate(
                           result['possibleDiseases'].length,
                               (index) => Text('- ${result['possibleDiseases'][index]}'),
@@ -103,7 +103,7 @@ class _HomeViewState extends State<HomeView> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Recommended Steps:",
-                            style: TextStyle(fontWeight: FontWeight.bold)),
+                            style: TextStyle(fontWeight: FontWeight.bold, color: kGreen)),
                         ...List.generate(
                           result['steps'].length,
                               (index) => Text('• ${result['steps'][index]}'),
@@ -116,7 +116,7 @@ class _HomeViewState extends State<HomeView> {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text("Food Remedies:",
-                            style: TextStyle(fontWeight: FontWeight.bold)),
+                            style: TextStyle(fontWeight: FontWeight.bold, color: kGreen)),
                         ...List.generate(
                           result['foodRemedies'].length,
                               (index) => Text('• ${result['foodRemedies'][index]}'),
@@ -136,6 +136,7 @@ class _HomeViewState extends State<HomeView> {
                             : Colors.green[800],
                       ),
                     ),
+                  SizedBox(height: 20),
                 ],
               ),
             );
