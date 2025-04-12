@@ -77,7 +77,7 @@ class _InputFieldState extends State<InputField> {
             maxLines: widget.maxLines,
             decoration: InputDecoration(
               hintText: widget.hintText,
-              hintStyle: TextStyle(color: kLightGreen),
+              hintStyle: TextStyle(color: kGrey),
               errorText: _errorMessage ?? widget.errorText,
               fillColor: kWhite,
               filled: true,
@@ -95,7 +95,7 @@ class _InputFieldState extends State<InputField> {
               ),
               enabledBorder: OutlineInputBorder(
                 borderRadius: BorderRadius.circular(10.0),
-                borderSide: BorderSide(color: Colors.grey, width: 1.0),
+                borderSide: BorderSide(color: kGrey, width: 1.0),
               ),
               suffixIcon:
               widget.password
