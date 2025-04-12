@@ -1,5 +1,6 @@
 import 'package:afyaai/controllers/register_controller.dart';
 import 'package:afyaai/routes/app_routes.dart';
+import 'package:afyaai/views/widgets/custom_spinner.dart';
 import 'package:afyaai/views/widgets/mobile/buttons/custom_button.dart';
 import 'package:afyaai/views/widgets/mobile/buttons/custom_button_two.dart';
 import 'package:afyaai/views/widgets/mobile/input/custom_input.dart';
@@ -57,132 +58,136 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
-    double keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
 
-    return Scaffold(
-      body: Stack(
-        children: [
-          SafeArea(
-            child: ListView(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.stretch,
-                  children: [
-                    Hero(
-                      tag: "logo",
-                      child: Image(
-                        image: AssetImage('images/afyaAI-logo.png'),
-                        height: screenHeight * 0.2,
-                      ),
-                    ),
-                    Center(
-                      child: Text(
-                        "Create an Account",
-                        style: TextStyle(
-                          fontSize: 20,
-                          fontWeight: FontWeight.bold,
+    return Obx(() => Scaffold(
+        body: Stack(
+          children: [
+            SafeArea(
+              child: ListView(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      Hero(
+                        tag: "logo",
+                        child: Image(
+                          image: AssetImage('images/afyaAI-logo.png'),
+                          height: screenHeight * 0.2,
                         ),
                       ),
-                    ),
-                    Center(
-                      child: Text(
-                        "Create an account & get instant diagnosis.",
-                        style: TextStyle(fontSize: 15),
-                      ),
-                    ),
-                    SizedBox(height: screenHeight * 0.03),
-                    InputField(
-                      controller: _nameController,
-                      hintText: "John Doe",
-                      label: "Name *",
-                      isRequired: true,
-                    ),
-                    InputField(
-                      controller: _emailController,
-                      hintText: "example@gmail.com",
-                      label: "Email *",
-                      isRequired: true,
-                    ),
-                    InputField(
-                      controller: _ageController,
-                      hintText: "10",
-                      label: "Age *",
-                      isRequired: true,
-                      integerOnly: true,
-                    ),
-                    CustomDropdown(
-                        label: "Gender",
-                        value: selectedGender,
-                        items: choices,
-                        onChanged: (value) => setState(() => selectedGender = value)),
-                    InputChipsField(
-                      label: "Existing Conditions if any (optional)",
-                      controller: _conditionController,
-                      items: conditions,
-                      onAdd: (value) {
-                        setState(() => conditions.add(value));
-                      },
-                      onRemove: (value) {
-                        setState(() => conditions.remove(value));
-                      },
-                    ),
-                    InputChipsField(
-                      label: "Allergies if any (optional)",
-                      controller: _allergyController,
-                      items: allergies,
-                      onAdd: (value) {
-                        setState(() => allergies.add(value));
-                      },
-                      onRemove: (value) {
-                        setState(() => allergies.remove(value));
-                      },
-                    ),
-                    InputField(
-                      controller: _passwordController,
-                      hintText: "******",
-                      label: "Password *",
-                      isRequired: true,
-                      password: true,
-                    ),
-                    SizedBox(height: 10,),
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                        horizontal: 10,
-                        vertical: 10,
-                      ),
-                      child: CustomButton(
-                        callBackFunction: () {
-                          _register();
-                        },
-                        label: "Sign Up",
-                      ),
-                    ),
-                    SizedBox(height: 20,),
-                    Padding(
-                      padding: EdgeInsets.symmetric(vertical: 5),
-                      child: Center(
+                      Center(
                         child: Text(
-                          "Already have an account?",
+                          "Create an Account",
+                          style: TextStyle(
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold,
+                          ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 10),
-                      child: CustomButtonTwo(
-                        callBackFunction: () {
-                          Navigator.pop(context);
-                        },
-                        label: "Login",
+                      Center(
+                        child: Text(
+                          "Create an account & get instant diagnosis.",
+                          style: TextStyle(fontSize: 15),
+                        ),
                       ),
-                    ),
-                    SizedBox(height: 40,),
-                  ],
-                ),
-              ],
+                      SizedBox(height: screenHeight * 0.03),
+                      InputField(
+                        controller: _nameController,
+                        hintText: "John Doe",
+                        label: "Name *",
+                        isRequired: true,
+                      ),
+                      InputField(
+                        controller: _emailController,
+                        hintText: "example@gmail.com",
+                        label: "Email *",
+                        isRequired: true,
+                      ),
+                      InputField(
+                        controller: _ageController,
+                        hintText: "10",
+                        label: "Age *",
+                        isRequired: true,
+                        integerOnly: true,
+                      ),
+                      CustomDropdown(
+                          label: "Gender",
+                          value: selectedGender,
+                          items: choices,
+                          onChanged: (value) => setState(() => selectedGender = value)),
+                      InputChipsField(
+                        label: "Existing Conditions if any (optional)",
+                        controller: _conditionController,
+                        items: conditions,
+                        onAdd: (value) {
+                          setState(() => conditions.add(value));
+                        },
+                        onRemove: (value) {
+                          setState(() => conditions.remove(value));
+                        },
+                      ),
+                      InputChipsField(
+                        label: "Allergies if any (optional)",
+                        controller: _allergyController,
+                        items: allergies,
+                        onAdd: (value) {
+                          setState(() => allergies.add(value));
+                        },
+                        onRemove: (value) {
+                          setState(() => allergies.remove(value));
+                        },
+                      ),
+                      InputField(
+                        controller: _passwordController,
+                        hintText: "******",
+                        label: "Password *",
+                        isRequired: true,
+                        password: true,
+                      ),
+                      SizedBox(height: 10,),
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 10,
+                          vertical: 10,
+                        ),
+                        child: CustomButton(
+                          callBackFunction: () {
+                            _register();
+                          },
+                          label: "Sign Up",
+                        ),
+                      ),
+                      SizedBox(height: 20,),
+                      Padding(
+                        padding: EdgeInsets.symmetric(vertical: 5),
+                        child: Center(
+                          child: Text(
+                            "Already have an account?",
+                          ),
+                        ),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 10),
+                        child: CustomButtonTwo(
+                          callBackFunction: () {
+                            Navigator.pop(context);
+                          },
+                          label: "Login",
+                        ),
+                      ),
+                      SizedBox(height: 40,),
+                    ],
+                  ),
+                ],
+              ),
             ),
-          ),
-
-        ],
+            if (controller.isLoading.value)
+              Container(
+                color: Colors.black.withOpacity(0.5),
+                child: Center(child: spinkit),
+              ),
+          ],
+        ),
       ),
     );
   }
