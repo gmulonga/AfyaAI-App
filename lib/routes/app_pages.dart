@@ -5,6 +5,8 @@ import 'package:afyaai/views/mobile/home_view.dart' as mobile;
 import 'package:afyaai/views/web/auth/login_view.dart' as webLogin;
 import 'package:afyaai/views/mobile/auth/login_screen.dart' as mobileLogin;
 import 'package:afyaai/views/mobile/get_started_view.dart' as mobileGetStarted;
+import 'package:afyaai/views/mobile/auth/register_view.dart' as mobileRegister;
+import 'package:afyaai/views/web/auth/register_view.dart' as webRegister;
 import 'package:afyaai/controllers/home_controller.dart';
 import 'package:afyaai/controllers/login_controller.dart';
 import 'app_routes.dart';
@@ -14,6 +16,13 @@ class AppPages {
     GetPage(
       name: AppRoutes.getStarted,
       page: () => kIsWeb ? webLogin.LoginWebView() : mobileGetStarted.Home(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut<LoginController>(() => LoginController());
+      }),
+    ),
+    GetPage(
+      name: AppRoutes.register,
+      page: () => kIsWeb ? webRegister.RegisterView() : mobileRegister.RegisterScreen(),
       binding: BindingsBuilder(() {
         Get.lazyPut<LoginController>(() => LoginController());
       }),

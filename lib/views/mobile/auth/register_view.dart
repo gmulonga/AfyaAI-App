@@ -1,25 +1,35 @@
 import 'package:afyaai/routes/app_routes.dart';
-import 'package:afyaai/views/widgets/custom_button.dart';
-import 'package:afyaai/views/widgets/custom_button_two.dart';
-import 'package:afyaai/views/widgets/custom_input.dart';
+import 'package:afyaai/views/widgets/mobile/buttons/custom_button.dart';
+import 'package:afyaai/views/widgets/mobile/buttons/custom_button_two.dart';
+import 'package:afyaai/views/widgets/mobile/input/custom_input.dart';
+import 'package:afyaai/views/widgets/mobile/input/input_chip.dart';
+import 'package:afyaai/views/widgets/mobile/input/reusable_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:afyaai/utils/constants.dart';
 
 
-class LoginScreen extends StatefulWidget {
+class RegisterScreen extends StatefulWidget {
   @override
-  State<LoginScreen> createState() => _LoginScreenState();
+  State<RegisterScreen> createState() => _RegisterScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _conditionController = TextEditingController();
+  final TextEditingController _allergyController = TextEditingController();
 
+  List<String> conditions = [];
+  List<String> allergies = [];
+
+  String? selectedGender;
 
   void _login() {
     final String email = _emailController.text;
     final String password = _passwordController.text;
   }
+
+  final List<String> choices = ["male", "female"];
 
   @override
   Widget build(BuildContext context) {
@@ -45,7 +55,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     Center(
                       child: Text(
-                        "Login to your account",
+                        "Create an Account",
                         style: TextStyle(
                           fontSize: 20,
                           fontWeight: FontWeight.bold,
@@ -54,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     Center(
                       child: Text(
-                        "Welcome back! please enter your details.",
+                        "Create an account & get instant diagnosis.",
                         style: TextStyle(fontSize: 15),
                       ),
                     ),
@@ -78,6 +88,33 @@ class _LoginScreenState extends State<LoginScreen> {
                       isRequired: true,
                       integerOnly: true,
                     ),
+                    CustomDropdown(
+                        label: "Gender",
+                        value: selectedGender,
+                        items: choices,
+                        onChanged: (value) => setState(() => selectedGender = value)),
+                    InputChipsField(
+                      label: "Existing Conditions if any (optional)",
+                      controller: _conditionController,
+                      items: conditions,
+                      onAdd: (value) {
+                        setState(() => conditions.add(value));
+                      },
+                      onRemove: (value) {
+                        setState(() => conditions.remove(value));
+                      },
+                    ),
+                    InputChipsField(
+                      label: "Allergies if any (optional)",
+                      controller: _allergyController,
+                      items: allergies,
+                      onAdd: (value) {
+                        setState(() => allergies.add(value));
+                      },
+                      onRemove: (value) {
+                        setState(() => allergies.remove(value));
+                      },
+                    ),
                     InputField(
                       controller: _passwordController,
                       hintText: "******",
@@ -85,6 +122,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       isRequired: true,
                       password: true,
                     ),
+                    SizedBox(height: 10,),
                     Padding(
                       padding: EdgeInsets.symmetric(
                         horizontal: 10,
@@ -97,44 +135,31 @@ class _LoginScreenState extends State<LoginScreen> {
                         label: "Sign In",
                       ),
                     ),
+                    SizedBox(height: 20,),
+                    Padding(
+                      padding: EdgeInsets.symmetric(vertical: 5),
+                      child: Center(
+                        child: Text(
+                          "Already have an account?",
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 10),
+                      child: CustomButtonTwo(
+                        callBackFunction: () {
+                          Navigator.pop(context);
+                        },
+                        label: "Login",
+                      ),
+                    ),
+                    SizedBox(height: 40,),
                   ],
                 ),
               ],
             ),
           ),
-          if (!isKeyboardVisible)
-            Positioned(
-              bottom: screenHeight * 0.14,
-              left: 0,
-              right: 0,
-              child: Visibility(
-                visible: !isKeyboardVisible,
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 5),
-                  child: Center(
-                    child: Text(
-                      "Don't have an account?",
-                    ),
-                  ),
-                ),
-              ),
-            ),
 
-          if (!isKeyboardVisible)
-            Positioned(
-              bottom: screenHeight * 0.06,
-              left: 0,
-              right: 0,
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 10),
-                child: CustomButtonTwo(
-                  callBackFunction: () {
-                    Navigator.pushNamed(context, AppRoutes.register);
-                  },
-                  label: "Register",
-                ),
-              ),
-            ),
         ],
       ),
     );
