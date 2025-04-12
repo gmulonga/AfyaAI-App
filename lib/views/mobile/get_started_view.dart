@@ -58,6 +58,7 @@ class _HomeState extends State<Home> {
                                     captions[index],
                                     style: TextStyle(
                                       fontSize: screenWidth * 0.04,
+                                      color: kGreen,
                                     ),
                                     textAlign: TextAlign.center,
                                   ),
