@@ -1,4 +1,5 @@
 import 'package:afyaai/models/login_model.dart';
+import 'package:afyaai/models/register_model.dart';
 import 'package:afyaai/utils/constants.dart';
 import 'localstorage_service.dart';
 import 'package:http/http.dart' as http;
@@ -35,6 +36,31 @@ class ApiService {
       return jsonDecode(response.body);
     } else {
       throw Exception('Failed to login');
+    }
+  }
+
+  Future<Map<String, dynamic>?> register(RegisterModel request) async {
+    final response = await http.post(
+      Uri.parse('${BASE_URL}/register'),
+      headers: {
+        'Content-Type': 'application/json', 'action': 'login'
+      },
+      body: jsonEncode({
+        'action': 'register',
+        'name': request.name,
+        'email': request.email,
+        'password': request.password,
+        'age': request.age,
+        'gender': request.gender,
+        'allergies': request.allergies,
+        'existing_conditions': request.existingConditions
+      }),
+    );
+
+    if (response.statusCode == 201) {
+      return jsonDecode(response.body);
+    } else {
+      throw Exception('Failed to register');
     }
   }
 

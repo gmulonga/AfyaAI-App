@@ -1,3 +1,4 @@
+import 'package:afyaai/controllers/register_controller.dart';
 import 'package:afyaai/routes/app_routes.dart';
 import 'package:afyaai/views/widgets/mobile/buttons/custom_button.dart';
 import 'package:afyaai/views/widgets/mobile/buttons/custom_button_two.dart';
@@ -6,6 +7,7 @@ import 'package:afyaai/views/widgets/mobile/input/input_chip.dart';
 import 'package:afyaai/views/widgets/mobile/input/reusable_dropdown.dart';
 import 'package:flutter/material.dart';
 import 'package:afyaai/utils/constants.dart';
+import 'package:get/get.dart';
 
 
 class RegisterScreen extends StatefulWidget {
@@ -18,16 +20,37 @@ class _RegisterScreenState extends State<RegisterScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _conditionController = TextEditingController();
   final TextEditingController _allergyController = TextEditingController();
+  final TextEditingController _nameController = TextEditingController();
+  final TextEditingController _ageController = TextEditingController();
 
   List<String> conditions = [];
   List<String> allergies = [];
 
   String? selectedGender;
+  final RegisterController controller = Get.put(RegisterController());
 
-  void _login() {
-    final String email = _emailController.text;
-    final String password = _passwordController.text;
+  void _register() {
+    final String name = _nameController.text.trim();
+    final String email = _emailController.text.trim();
+    final String password = _passwordController.text.trim();
+    final String ageText = _ageController.text.trim();
+    final int age = int.tryParse(ageText) ?? 0;
+
+    if (name.isEmpty || email.isEmpty || password.isEmpty || age <= 0 || selectedGender == null) {
+      Get.snackbar("Error", "Please fill in all required fields");
+      return;
+    }
+
+    controller.name.value = name;
+    controller.email.value = email;
+    controller.password.value = password;
+    controller.age.value = age;
+    controller.gender.value = selectedGender!;
+    controller.allergies.value = allergies;
+    controller.existingConditions.value = conditions;
+    controller.register();
   }
+
 
   final List<String> choices = ["male", "female"];
 
@@ -35,7 +58,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     double screenHeight = MediaQuery.of(context).size.height;
     double keyboardHeight = MediaQuery.of(context).viewInsets.bottom;
-    bool isKeyboardVisible = keyboardHeight > 0;
 
     return Scaffold(
       body: Stack(
@@ -70,7 +92,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     SizedBox(height: screenHeight * 0.03),
                     InputField(
-                      controller: _emailController,
+                      controller: _nameController,
                       hintText: "John Doe",
                       label: "Name *",
                       isRequired: true,
@@ -82,7 +104,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       isRequired: true,
                     ),
                     InputField(
-                      controller: _emailController,
+                      controller: _ageController,
                       hintText: "10",
                       label: "Age *",
                       isRequired: true,
@@ -130,9 +152,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       ),
                       child: CustomButton(
                         callBackFunction: () {
-                          _login();
+                          _register();
                         },
-                        label: "Sign In",
+                        label: "Sign Up",
                       ),
                     ),
                     SizedBox(height: 20,),
