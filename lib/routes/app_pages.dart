@@ -22,7 +22,7 @@ class AppPages {
     ),
     GetPage(
       name: AppRoutes.register,
-      page: () => kIsWeb ? webRegister.RegisterView() : mobileRegister.RegisterScreen(),
+      page: () => kIsWeb ? webRegister.RegisterWebView() : mobileRegister.RegisterScreen(),
       binding: BindingsBuilder(() {
         Get.lazyPut<LoginController>(() => LoginController());
       }),

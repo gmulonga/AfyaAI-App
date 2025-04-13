@@ -1,4 +1,5 @@
 import 'package:afyaai/controllers/login_controller.dart';
+import 'package:afyaai/routes/app_routes.dart';
 import 'package:afyaai/utils/constants.dart';
 import 'package:afyaai/views/widgets/custom_button.dart';
 import 'package:afyaai/views/widgets/custom_spinner.dart';
@@ -64,7 +65,9 @@ class _LoginWebViewState extends State<LoginWebView> {
               textAlign: TextAlign.center, style: TextStyle(color: kGreen)),
           Padding(
             padding: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
-            child: CustomButtonTwo(callBackFunction: () {}, label: "Sign Up"),
+            child: CustomButtonTwo(callBackFunction: () {
+              Navigator.pushNamed(context, AppRoutes.register);
+            }, label: "Sign Up"),
           )
         ],
       ),
@@ -129,7 +132,7 @@ class _LoginWebViewState extends State<LoginWebView> {
               if (controller.isLoading.value)
                 Container(
                   color: Colors.black.withOpacity(0.5),
-                  child: Center(child: spinkit), // make sure `spinkit` is a valid widget
+                  child: Center(child: spinkit),
                 ),
             ],
           )),
