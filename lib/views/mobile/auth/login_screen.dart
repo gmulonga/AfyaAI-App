@@ -39,13 +39,15 @@ class _LoginScreenState extends State<LoginScreen> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.stretch,
                   children: [
+                    SizedBox(height: screenHeight * 0.05,),
                     Hero(
                       tag: "logo",
                       child: Image(
                         image: AssetImage('images/afyaAI-logo.png'),
-                        height: screenHeight * 0.2,
+                        height: screenHeight * 0.1,
                       ),
                     ),
+                    SizedBox(height: screenHeight * 0.03,),
                     Center(
                       child: Text(
                         "Login to your account",

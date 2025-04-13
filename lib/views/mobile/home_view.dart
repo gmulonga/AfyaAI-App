@@ -166,14 +166,15 @@ class _HomeViewState extends State<HomeView> {
                       padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                       child: Text("Welcome, $userName", style: TextStyle(fontWeight: FontWeight.bold, color: kGreen, fontSize: 15),),
                     ),
+                    SizedBox(height: screenHeight * 0.05,),
                     Hero(
                       tag: "logo",
                       child: Image(
                         image: AssetImage('images/afyaAI-logo.png'),
-                        height: screenHeight * 0.2,
+                        height: screenHeight * 0.1,
                       ),
                     ),
-                    SizedBox(height: 10),
+                    SizedBox(height: screenHeight * 0.05,),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 30, vertical: 8),
                       child: Center(

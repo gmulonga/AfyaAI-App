@@ -68,13 +68,15 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
+                      SizedBox(height: screenHeight * 0.01,),
                       Hero(
                         tag: "logo",
                         child: Image(
                           image: AssetImage('images/afyaAI-logo.png'),
-                          height: screenHeight * 0.2,
+                          height: screenHeight * 0.1,
                         ),
                       ),
+                      SizedBox(height: screenHeight * 0.05,),
                       Center(
                         child: Text(
                           "Create an Account",
