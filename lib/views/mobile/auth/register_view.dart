@@ -1,9 +1,9 @@
 import 'package:afyaai/controllers/register_controller.dart';
 import 'package:afyaai/routes/app_routes.dart';
 import 'package:afyaai/views/widgets/custom_spinner.dart';
-import 'package:afyaai/views/widgets/mobile/buttons/custom_button.dart';
+import 'package:afyaai/views/widgets/custom_button.dart';
 import 'package:afyaai/views/widgets/mobile/buttons/custom_button_two.dart';
-import 'package:afyaai/views/widgets/mobile/input/custom_input.dart';
+import 'package:afyaai/views/widgets/custom_input.dart';
 import 'package:afyaai/views/widgets/mobile/input/input_chip.dart';
 import 'package:afyaai/views/widgets/mobile/input/reusable_dropdown.dart';
 import 'package:flutter/material.dart';

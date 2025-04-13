@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:afyaai/utils/constants.dart';
 import 'package:afyaai/views/mobile/auth/login_screen.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-import 'package:afyaai/views/widgets/mobile/buttons/custom_button.dart';
+import 'package:afyaai/views/widgets/custom_button.dart';
 // import 'package:afyaai/routes/';
 
 

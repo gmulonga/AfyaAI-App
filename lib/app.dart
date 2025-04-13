@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'routes/app_routes.dart';
@@ -9,7 +10,7 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'AfyaAI',
-      initialRoute: AppRoutes.getStarted,
+      initialRoute: kIsWeb ? AppRoutes.login : AppRoutes.getStarted,
       getPages: AppPages.routes,
     );
   }
