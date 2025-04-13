@@ -120,7 +120,7 @@ class _LoginWebViewState extends State<LoginWebView> {
                       flex: 2,
                       child: Center(
                         child: Container(
-                          width: constraints.maxWidth * 0.4,
+                          width: constraints.maxWidth * 0.6,
                           padding: const EdgeInsets.all(16.0),
                           child: _buildForm(),
                         ),
